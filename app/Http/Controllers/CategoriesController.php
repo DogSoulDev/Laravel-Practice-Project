@@ -48,10 +48,10 @@ class CategoriesController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id)
+    public function show(Category $category)
     {
         return response()->json([
-            'category' => $id,
+            'category' => $category,
         ]);
 }
 
@@ -75,6 +75,10 @@ class CategoriesController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return response()->json([
+            'Deleted successfully!' => true,
+        ]);
+            
     }
 }
