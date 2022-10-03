@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name', 80)->unique();
             $table->text('description')->nullable();            
-            $table->foreignIdFor(Category::class);
+            $table->foreignId('category_id');
+            $table->integer('price_in_cents');
             $table->timestamps();;
         });
     }
