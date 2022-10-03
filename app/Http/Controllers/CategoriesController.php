@@ -26,9 +26,17 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         // dd($request->name);
+        $validated = $request->validate([
+            'name'=> 'required |string|max:80|unique:categories,name',
+        ]);
+        // dd($validated);
         $category = new Category();
-        $category->name =$request->name;
+        $category->name =$validated['name'];
         $category->save();
+
+        return response()->json([
+            'category' => $category,
+        ]);
     }
 
     /**

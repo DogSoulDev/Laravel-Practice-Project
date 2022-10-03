@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description')->nullable();            
             $table->foreignId('category_id');
             $table->integer('price_in_cents');
-            $table->timestamps();;
+            $table->timestamps();
         });
     }
 
