@@ -14,7 +14,10 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::order('name')->get();
+     return response()->json([
+        'categories'=>$categories,
+     ]);
     }
 
     /**
@@ -45,10 +48,12 @@ class CategoriesController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(int $id)
     {
-        //
-    }
+        return response()->json([
+            'category' => $id,
+        ]);
+}
 
     /**
      * Update the specified resource in storage.
