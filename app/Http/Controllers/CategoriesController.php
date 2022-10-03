@@ -64,7 +64,15 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $validated = $request->validate([
+            'name'=> 'required |string|max:80|unique:categories,name,' . $category->id,
+        ]);
+        $category->name = $validated['name'];
+        $category->save();
+        return response()->json([
+            'Updated successfully!' => true,
+            'category' => $category,
+        ]);
     }
 
     /**
